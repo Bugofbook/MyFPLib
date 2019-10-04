@@ -1,0 +1,27 @@
+{
+  "name": "bobjslambdahof",
+  "version": "1.0.0",
+  "description": "a high order function lib for javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bugofbook/MyJSlambdaLib.git"
+  },
+  "keywords": [
+    "javascript",
+    "lambda",
+    "hof"
+  ],
+  "author": "bugofbook",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bugofbook/MyJSlambdaLib/issues"
+  },
+  "homepage": "https://github.com/Bugofbook/MyJSlambdaLib#readme",
+  "dependencies": {
+    "eslint": "^6.5.1"
+  }
+}
