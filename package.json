@@ -1,31 +1,33 @@
 {
-  "name": "bobjslambdahof",
+  "name": "@bugofbook/myjshoflib",
   "version": "1.0.0",
   "description": "a high order function lib for javascript",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.5.1",
+    "jest": "^24.9.0"
+  },
   "scripts": {
-    "test": "jest"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bugofbook/MyJSlambdaLib.git"
+    "url": "git+https://github.com/Bugofbook/MyJSHOFLib.git"
   },
   "keywords": [
-    "javascript",
-    "lambda",
-    "hof"
+    "currying",
+    "high order function",
+    "functional programming"
   ],
-  "author": "bugofbook",
+  "author": "BugofBook",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Bugofbook/MyJSlambdaLib/issues"
+    "url": "https://github.com/Bugofbook/MyJSHOFLib/issues"
   },
-  "homepage": "https://github.com/Bugofbook/MyJSlambdaLib#readme",
-  "dependencies": {
-    "eslint": "^6.5.1"
-  },
-  "devDependencies": {
-    "babel-jest": "^24.9.0",
-    "jest": "^24.9.0"
-  }
+  "homepage": "https://github.com/Bugofbook/MyJSHOFLib#readme"
 }
