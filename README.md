@@ -1,6 +1,6 @@
 # FP fonction
 
-function in there can Currying.
+functions are the High-order-function invoke "control structure" in javascript. and almost every function can Currying.
 
 ## logicHOF
 
@@ -25,6 +25,21 @@ use function
 
 both function are the copy from Redux.js. And invokeCompose is reverse to compose.there are no curry.
 
+Use function:
+
+```javascript
+compose(fnProcessN,...,fnProcess2,fnProcess1)(data)
+invokeCompose(fnProcess1,fnProcess2,...,fnProcessN)(data)
+```
+
+both expression statments are equal to...
+
+```javascript
+fnProcessN(...fnProcess2(fnProcess1(data)));
+```
+
+For example:
+
 ```javascript
 const process1 = data => data + "1";
 const process2 = data => data + "2";
@@ -38,7 +53,28 @@ console.log(bbb); // '0123'
 
 ### invokeIf
 
-the function is invoke if. it have currying
+the function is invoke "if". it have currying
+
+Use function:
+
+```javascript
+invokeIf(fnCondition, [fnTrue, fnFalse], arg);
+invokeIf(fnCondition)([fnTrue, fnFalse], arg);
+invokeIf(fnCondition)([fnTrue, fnFalse], arg);
+invokeIf(fnCondition)([fnTrue, fnFalse])(arg);
+```
+
+those expression statments are equal to...
+
+```javascript
+if (fnCondition(arg)) {
+  return fnTrue(arg);
+} else {
+  return fnFalse(arg);
+}
+```
+
+For example:
 
 ```javascript
 const fcon = e => e > 10;
@@ -56,6 +92,36 @@ console.log(result3); // isbig: 114
 ### invokeIfElseIf
 
 the function is invoke if...elseif. it have currying
+
+Use function:
+
+```javascript
+invokeIfElseIf(
+  [
+    [fnCondition1, fnResult1],
+    [fnCondition2, fnResult2]
+  ],
+  data
+);
+invokeIfElseIf([
+  [fnCondition1, fnResult1],
+  [fnCondition2, fnResult2]
+])(data);
+```
+
+both expression statments are equal to...
+
+```javascript
+if (fnCondition1(data)) {
+  return fnResult1(data);
+} else if (fnCondition2) {
+  return fnResult2(data);
+} else {
+  return data;
+}
+```
+
+For example:
 
 ```javascript
 const fbig1000 = e => e > 1000;
@@ -79,6 +145,55 @@ let result2 = invokeIfElseIf(
 console.log(result2); // isbig10:13
 ```
 
-## 222
+### invokeWhile and invokeDoWhile
+
+the function is invoke "while" and "Do...while". it have currying.
+
+Use function:
+
+```javascript
+invokeWhile(fnCondition, fnProcess, arg);
+invokeWhile(fnCondition)(fnProcess, arg);
+invokeWhile(fnCondition, fnProcess)(arg);
+invokeWhile(fnCondition)(fnProcess)(arg);
+invokeDoWhile(fnCondition, fnProcess, arg);
+invokeDoWhile(fnCondition)(fnProcess, arg);
+invokeDoWhile(fnCondition, fnProcess)(arg);
+invokeDoWhile(fnCondition)(fnProcess)(arg);
+```
+
+those expression statments are equal to...
+
+```javascript
+While: while (fnCondition(arg)) {
+  arg = fnProcess(arg);
+}
+return arg;
+
+DoWhile: arg = fnProcess(arg);
+while (fnCondition(arg)) {
+  arg = fnProcess(arg);
+}
+return arg;
+```
+
+For example:
+
+```javascript
+let fcon = e => e < 10;
+let fporc = e => e + 2;
+let result1 = invokeWhile(fcon)(fporc)(3);
+console.log(result1); // 11
+let addTo10 = invokeWhile(fcon);
+let result2 = invokeWhile(fcon, fporc, 3);
+console.log(result2); // 11
+let addOneTo10 = invokeWhile(fcon)(fporc);
+let result3 = addOneTo10(3);
+console.log(result3); // 11
+```
+
+### invokeSwitch
+
+the function is invoke "Switch",
 
 111
