@@ -86,7 +86,7 @@ let isbig10 = invokeIf(fcon);
 let result2 = isbig10([ftr, ffa])(11);
 console.log(result2); // isbig: 11
 let result3 = invokeIf(fcon, [ftr, ffa])(14);
-console.log(result3); // isbig: 114
+console.log(result3); // isbig: 14
 ```
 
 ### invokeIfElseIf
@@ -135,14 +135,14 @@ let result1 = invokeIfElseIf([
   [fbig1000, ftr1],
   [fbig100, ftr2],
   [fbig10, ftr3],
-  [ffa]
+  [()=>true,ffa]
 ])(110);
 console.log(result1); // isbig100:110
 let result2 = invokeIfElseIf(
-  [[fbig1000, ftr1], [fbig100, ftr2], [fbig10, ftr3], [ffa]],
-  13
+  [[fbig1000, ftr1], [fbig100, ftr2], [fbig10, ftr3]],
+  3
 );
-console.log(result2); // isbig10:13
+console.log(result2); // 3
 ```
 
 ### invokeWhile and invokeDoWhile
@@ -196,4 +196,71 @@ console.log(result3); // 11
 
 the function is invoke "Switch",
 
-111
+Use function:
+
+```javascript
+invokeSwitch(
+  fnCondition,
+  [
+    [fnCase1, fnProcess1],
+    [fnCase2, fnProcess2]
+  ],
+  data
+);
+invokeSwitch(fnCondition)(
+  [
+    [fnCase1, fnProcess1],
+    [fnCase2, fnProcess2]
+  ],
+  data
+);
+invokeSwitch(fnCondition, [
+  [fnCase1, fnProcess1],
+  [fnCase2, fnProcess2]
+])(data);
+invokeSwitch(fnCondition)([
+  [fnCase1, fnProcess1],
+  [fnCase2, fnProcess2]
+])(data);
+```
+
+both expression statments are equal to...
+
+if fnCase1 is function and fnCase2 is not function
+
+```javascript
+switch (fnCondition(data)) {
+  case:fnCase1(data) {
+    fnProcess1(data)
+  }
+  case:fnCase2 {
+    fnProcess2(data)
+  }
+}
+```
+
+For example:
+
+```javascript
+let fCond = e => `${e}${e}`;
+let fCase1 = () => "成績為A";
+let fCase2 = () => "成績為B";
+let fCase3 = () => "成績為C";
+let fCase4 = () => "成績為D";
+let fDefault = () => "資料有錯，請檢查"
+let CaseObj = [
+  ["aa", fCase1],
+  ["bb", fCase2],
+  ["cc", fCase3],
+  ["dd", fCase4],
+  [fCond,fDefault]
+];
+let result1 = invokeSwitch(fCond)(CaseObj)("a");
+console.log(result1); // 成績為A
+let show1 = invokeSwitch(fCond);
+let result2 = show1(CaseObj)("b");
+console.log(result2); // 成績為B
+let result3 = invokeSwitch(fCond)(CaseObj)("z");
+console.log(result1); // 資料有錯，請檢查
+```
+
